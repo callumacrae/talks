@@ -1,0 +1,11 @@
+{
+  "name": "how-to-not-use-jquery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build": "browserify -t babelify js/script.js -o build/script.js"
+  },
+  "author": "Callum Macrae <callum@macr.ae>",
+  "license": "MIT"
+}
