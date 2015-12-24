@@ -20,6 +20,7 @@ export default function SliderPlugin(slides) {
 
 	for (let i = 0; i < slides.slides.length; i++) {
 		newKnob = baseKnob.cloneNode();
+		newKnob.dataset.index = i;
 		knobs.push(newKnob);
 
 		slider.appendChild(newKnob);
@@ -28,6 +29,10 @@ export default function SliderPlugin(slides) {
 	knobs[0].classList.add(ACTIVE_CLASS);
 
 	slides.slideContainer.appendChild(slider);
+
+	util.on(slider, 'click', function (e) {
+		slides.goTo(Number(e.target.dataset.index))
+	});
 
 	this.hooks = {
 		slideChange: function (slideIndex) {
