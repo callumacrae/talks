@@ -1,0 +1,24 @@
+.slider {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+
+	display: table;
+	width: 100%;
+}
+
+.slider__knob {
+	display: table-cell;
+	height: 5px;
+
+	background-color: #eee;
+	cursor: pointer;
+}
+
+.slider__knob:not(:last-child) {
+	border-right: 1px #ccc solid;
+}
+
+.slider__knob--active {
+	background-color: #ccc;
+}

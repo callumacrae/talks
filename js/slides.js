@@ -10,9 +10,10 @@ import * as util from './util';
 function Slides(slideContainer, initial = 0) {
 	this.slideContainer = slideContainer;
 	this.slides = util.$$('.slide', slideContainer);
-	this.goTo(initial);
 
 	this.plugins = [];
+
+	this.goTo(initial);
 }
 
 /**
@@ -30,6 +31,12 @@ Slides.prototype.goTo = function goToSlide(newIndex) {
 	});
 
 	this.index = newIndex;
+
+	util.each(this.plugins, function (plugin) {
+		if (plugin.hooks && typeof plugin.hooks.slideChange === 'function') {
+			plugin.hooks.slideChange(newIndex);
+		}
+	});
 };
 
 /**
