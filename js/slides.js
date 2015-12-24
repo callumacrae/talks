@@ -32,11 +32,7 @@ Slides.prototype.goTo = function goToSlide(newIndex) {
 
 	this.index = newIndex;
 
-	util.each(this.plugins, function (plugin) {
-		if (plugin.hooks && typeof plugin.hooks.slideChange === 'function') {
-			plugin.hooks.slideChange(newIndex);
-		}
-	});
+	this._callHook('slideChange', newIndex);
 };
 
 /**
@@ -62,6 +58,21 @@ Slides.prototype.back = function backSlide(diff = 1) {
  */
 Slides.prototype.addPlugin = function addSlidePlugin(plugin) {
 	this.plugins.push(plugin);
+};
+
+/**
+ * Call a hook with some data.
+ *
+ * @param {string} hook The name of the hook to call.
+ * @param {*} data The data to be passed to the hook.
+ * @private
+ */
+Slides.prototype._callHook = function callSlideHook(hook, data) {
+	util.each(this.plugins, function (plugin) {
+		if (plugin.hooks && typeof plugin.hooks[hook] === 'function') {
+			plugin.hooks[hook](data);
+		}
+	});
 };
 
 export default Slides;

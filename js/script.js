@@ -11,4 +11,9 @@ slides.addPlugin(keyboard);
 const slider = new SliderPlugin(slides);
 slides.addPlugin(slider);
 
-// @todo slider control along bottom: 3px?
+/**
+ * @todo:
+ *
+ * MarkDown plugin
+ * Numbered slides + keyboard number control
+ */
