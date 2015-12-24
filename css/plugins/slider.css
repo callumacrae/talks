@@ -5,11 +5,13 @@
 
 	display: flex;
 	width: 100%;
+
+	opacity: 0.5;
 }
 
 .slider__knob {
 	flex: 1;
-	height: 5px;
+	height: 7px;
 
 	background-color: #eee;
 	cursor: pointer;

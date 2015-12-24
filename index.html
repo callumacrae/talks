@@ -19,11 +19,218 @@
 			<p>Author of "Learning from jQuery"</p>
 		</div>
 
+		<div class="slide slide--title">
+			<h1>What even is jQuery?</h1>
+		</div>
+
 		<div class="slide slide--code">
 			<h1>What even is jQuery?</h1>
-			<pre><code class="language-javascript">$('pre').fooBar();
-$('pre').fooBarAgain();</code></pre>
+			<pre><code class="language-js">var $uncle = $('.foo').parent().next();
+$uncle.css('background-color', 'red');</code></pre>
 		</div>
+
+		<div class="slide slide--code">
+			<h1>What even is jQuery?</h1>
+			<pre><code class="language-js">$('.foo').on('click', function (e) {
+	e.preventDefault();
+
+	$(this).html('This has been clicked!');
+});</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>What even is jQuery?</h1>
+			<pre><code class="language-js">$.get('/user.json', { name: 'Callum' })
+	.then(function (data) {
+		$('.callum').html('Callum\'s data: ' + data);
+	})
+	.catch(function (err) {
+		$('.callum').text('AJAX request failed :-(');
+		console.error(err);
+	});</code></pre>
+		</div>
+
+		<div class="slide slide--title">
+			<h1>What about ES2015?</h1>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>let + const</h1>
+			<pre><code class="language-js">if (true) {
+	var first = 'inside';
+	let second = 'inside';
+
+	console.log(first, second); // inside, inside
+}
+
+console.log(first, second); // inside, undefined</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>let + const</h1>
+			<pre><code class="language-js">// Doesn't work as expected
+for (var i = 0; i < 10; i++) {
+	setTimeout(function () {
+		console.log(i);
+	}, 100);
+}
+
+// Works as expected
+for (var i = 0; i < 10; i++) {
+	let j = i;
+	setTimeout(function () {
+		console.log(j);
+	}, 100);
+}</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Destructuring</h1>
+			<pre><code class="language-js">todo</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Default arguments</h1>
+			<pre><code class="language-js">todo</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>More default arguments</h1>
+			<pre><code class="language-js">todo</code></pre>
+		</div>
+
+		<div class="slide slide--title">
+			<h1>Replacing jQuery</h1>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>DOM functionality</h1>
+			<pre><code class="language-js">querySelectorAll
+				rest + spread to convert to array
+				Iterators</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Event handling</h1>
+			<pre><code class="language-js">todo</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1><code>$.ajax()</code></h1>
+			<pre><code class="language-js">fetch API</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1><code>$.Deferred()</code></h1>
+			<pre><code class="language-js">promises</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Array helpers</h1>
+			<pre><code class="language-js">replace jQuery ones, AND introduce new ones</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>JSON</h1>
+			<pre><code class="language-js">$.parseJSON(data)</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>&nbsp;</h1>
+			<h1>ಠ_ಠ</h1>
+		</div>
+
+		<div class="slide slide--code">
+			<h1><code>$.extend()</code></h1>
+			<pre><code class="language-js">Object.assign() and ES7 rest+spread</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Animation</h1>
+			<pre><code class="language-js">css or requestAnimationFrame</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Callback objects</h1>
+			<pre><code class="language-js">wtf are these? set and map?</code></pre>
+		</div>
+
+		<div class="slide slide--title-image">
+			<img src="./images/babel.svg">
+		</div>
+
+		<div class="slide slide--title">
+			<h1>Is jQuery necessary?</h1>
+		</div>
+
+		<div class="slide slide--text">
+			<h1>oldIE</h1>
+			<p>Caniuse / GA</p>
+			<p>CSS2</p>
+		</div>
+
+		<div class="slide slide--text">
+			<h1>Low barrier to entry</h1>
+			<p>"Everyone knows jQuery, even the backend developers"</p>
+		</div>
+
+		<div class="slide slide--text">
+			<h1>A bajillion libraries</h1>
+		</div>
+
+		<div class="slide slide--text">
+			<h1>Browser quirks</h1>
+
+			<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">You might not need jQuery if you prefer to write your own shims, loops, error checks, and workarounds for inexplicable browser actions.</p>&mdash; Dave Methvin (@davemethvin) <a href="https://twitter.com/davemethvin/status/428979756236038144">January 30, 2014</a></blockquote>
+			<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+			<p><a href="https://gist.github.com/rwaldron/8720084#file-reasons-md">Rick Waldron's list of 110 quirks fixed by jQuery</a></p>
+		</div>
+
+		<div class="slide slide--title">
+			<h1>More ES2015</h1>
+			<p>jQuery isn't enough.</p>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Template literals</h1>
+			<pre><code class="language-js"></code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Generators</h1>
+			<pre><code class="language-js"></code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Classes</h1>
+			<pre><code class="language-js"></code></pre>
+		</div>
+
+		<div class="slide slide--title">
+			<h1>ES2016?!</h1>
+		</div>
+
+		<div class="slide slide--title">
+			<h1>How to not use jQuery</h1>
+
+			<ul>
+				<li>Everything jQuery does can be done without jQuery</li>
+				<li>ES2015 makes writing vanilla JavaScript even nicer</li>
+				<li>jQuery absolutely still has its place
+				<ul>
+					<li>Better browser support</li>
+					<li>Much easier to use</li>
+				</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="slide slide--title">
+			<h1>Is jQuery really necessary?</h1>
+		</div>
+
+
 	</div>
 
 	<script src="build/script.js"></script>
