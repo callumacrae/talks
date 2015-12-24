@@ -30,6 +30,10 @@ Slides.prototype.goTo = function goToSlide(newIndex) {
 		slide.style.display = (index === newIndex) ? 'block' : 'none';
 	});
 
+	// Set slides background to background of slide
+	let style = getComputedStyle(this.slides[newIndex]);
+	this.slideContainer.style.backgroundColor = style.backgroundColor;
+
 	this.index = newIndex;
 
 	this._callHook('slideChange', newIndex);

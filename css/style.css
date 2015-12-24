@@ -1,0 +1,45 @@
+@import "global.css";
+@import "plugins/slider.css";
+@import "../node_modules/prismjs/themes/prism.css";
+
+.slides {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	text-align: center;
+}
+
+.slide {
+	color: #184C70;
+	margin-bottom: 50px;
+}
+
+.slide--title {
+	background-color: #184C70;
+	color: white;
+}
+
+.slide--code {
+	height: 60%;
+}
+
+.slide--code h1 {
+	margin-bottom: 1em;
+}
+
+.slide pre {
+	display: inline-block;
+}
+
+h1 {
+	margin-top: 0;
+	margin-bottom: 0.3em;
+	font-size: 3em;
+}
+
+p {
+	margin: 0;
+	font-size: 1.5em;
+}

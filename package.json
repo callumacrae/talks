@@ -4,8 +4,24 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "build": "browserify -t babelify js/script.js -o build/script.js"
+    "build": "npm run build-js & npm run build-css",
+    "build-js": "browserify -t babelify js/script.js -o build/script.js",
+    "build-css": "postcss --use autoprefixer --use postcss-import css/style.css -d build",
+    "watch": "npm run watch-js & npm run watch-css",
+    "watch-js": "watchify -t babelify js/script.js -o build/script.js --debug",
+    "watch-css": "postcss --use autoprefixer --use postcss-import css/style.css -d build --watch"
   },
   "author": "Callum Macrae <callum@macr.ae>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0",
+    "normalize.css": "^3.0.3",
+    "postcss": "^5.0.13",
+    "postcss-cli": "^2.3.2",
+    "postcss-import": "^7.1.3",
+    "prismjs": "^1.3.0",
+    "watchify": "^3.6.1"
+  }
 }
