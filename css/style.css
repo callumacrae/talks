@@ -24,11 +24,7 @@
 	color: white;
 }
 
-.slide--title-image {
-	background-color: #184C70;
-}
-
-.slide--title-image img {
+.slide--title img {
 	width: 75%;
 }
 
