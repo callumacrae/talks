@@ -1,7 +1,7 @@
 {
-  "name": "how-to-not-use-jquery",
+  "name": "callum-macrae-talks",
   "version": "1.0.0",
-  "description": "",
+  "description": "A collection of talks by Callum Macrae",
   "main": "index.html",
   "scripts": {
     "build": "npm run build-js & npm run build-css",
