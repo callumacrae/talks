@@ -9,7 +9,7 @@
 <body>
 	<div class="slides">
 		<div class="slide slide--title">
-			<img src="./images/js.svg" width="200" style="margin-bottom: 30px">
+			<img src="./images/js.svg" width="200">
 			<h1>How to not use jQuery</h1>
 			<p>Callum Macrae | @callumacrae</p>
 		</div>
@@ -94,17 +94,54 @@ for (var i = 0; i < 10; i++) {
 
 		<div class="slide slide--code">
 			<h1>Destructuring</h1>
-			<pre><code class="language-js">todo</code></pre>
+			<pre><code class="language-js">let [a, b, c] = [1, 2, 3];
+let [match, name] = /name: (\S+)/.exec('name: Callum');
+let [, name] = /name: (\S+)/.exec('name: Callum');</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Destructuring</h1>
+			<pre><code class="language-js">let { one, two, three } = { one: 'Un', two: 'Deux', three: 'Trois' };
+console.log(three); // Trois
+
+// Destructuring with function arguments
+function logUser({ name, colour }) {
+	console.log(name + ' likes ' + colour);
+}
+logUser({ name: 'Callum', colour: 'orange' });</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Destructuring</h1>
+			<pre><code class="language-js">let { one, two, three } = { one: 'Un', two: 'Deux', three: 'Trois' };
+console.log(three); // Trois
+
+// Destructuring with function arguments
+function logUser({ name, colour }) {
+	console.log(name + ' likes ' + colour);
+}
+logUser({ name: 'Callum', colour: 'orange' });</code></pre>
+
+				<pre><code class="language-js">// { name } == { name: name }</code></pre>
 		</div>
 
 		<div class="slide slide--code">
 			<h1>Default arguments</h1>
-			<pre><code class="language-js">todo</code></pre>
+			<pre><code class="language-js">function log(msg, level = 'log') {
+	console[level](msg);
+}
+
+log('console.log()');
+log('console.error()', 'error');</code></pre>
 		</div>
 
 		<div class="slide slide--code">
-			<h1>More default arguments</h1>
-			<pre><code class="language-js">todo</code></pre>
+			<h1>Default arguments + destructuring</h1>
+			<pre><code class="language-js">function greet({ greeting = 'hello', greetee = 'world' }) {
+  console.log(greeting + ', ' + greetee + '!');
+}
+
+greet({ greetee: 'Front-End London' })</code></pre>
 		</div>
 
 		<div class="slide slide--title">
@@ -236,6 +273,7 @@ for (var i = 0; i < 10; i++) {
 
 		<div class="slide slide--title">
 			<h1>Is jQuery really necessary?</h1>
+			<p>Callum Macrae | @callumacrae</p>
 		</div>
 
 
