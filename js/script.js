@@ -23,5 +23,4 @@ slides.addPlugin(hash);
  * @todo:
  *
  * MarkDown plugin
- * Numbered slides + keyboard number control
  */
