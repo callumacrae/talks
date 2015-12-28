@@ -67,3 +67,7 @@ p {
 .twitter-tweet {
 	margin: 3em 0 !important;
 }
+
+span.emoji {
+	font-weight: 400;
+}

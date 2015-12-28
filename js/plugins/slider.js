@@ -37,12 +37,15 @@ export default function SliderPlugin(slides) {
 	this.hooks = {
 		slideChange: function (slideIndex) {
 			util.each(knobs, function (knob, knobIndex) {
-				if (slideIndex === knobIndex) {
-					knob.classList.add(ACTIVE_CLASS);
-				} else {
-					knob.classList.remove(ACTIVE_CLASS);
-				}
+				knob.classList.toggle(ACTIVE_CLASS, slideIndex === knobIndex);
 			});
 		}
 	}
 }
+
+/**
+ * @todo:
+ *
+ * section colours
+ * title on mouseover
+ */

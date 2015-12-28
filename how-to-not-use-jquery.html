@@ -149,30 +149,303 @@ greet({ greetee: 'Front-End London' })</code></pre>
 		</div>
 
 		<div class="slide slide--code">
-			<h1>DOM functionality</h1>
-			<pre><code class="language-js">querySelectorAll
-				rest + spread to convert to array
-				Iterators</code></pre>
+			<h1>DOM: Selecting</h1>
+			<pre><code class="language-js">// jQuery
+$('.user .user__name')
+
+// JavaScript
+document.querySelectorAll('.user .user__name');</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>DOM: Iterating with forEach</h1>
+			<pre><code class="language-js">// jQuery
+$('.user').each(function () {
+	console.log(this);
+});
+
+// JavaScript
+let users = document.querySelectorAll('.user');
+Array.from(users).forEach(function (user) {
+	console.log(user);
+});</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>DOM: Iterating with an iterator</h1>
+			<pre><code class="language-js">// jQuery
+$('.user').each(function () {
+	console.log(this);
+});
+
+// JavaScript
+let users = document.querySelectorAll('.user');
+for (let user of users) {
+	console.log(user);
+}</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>DOM: Selecting children</h1>
+			<pre><code class="language-js">// jQuery
+$('.user').find('.user__tag');
+
+// JavaScript
+let users = document.querySelectorAll('.user');
+let tags = [];
+
+for (let user of users) {
+	tags.push(...user.querySelectorAll('.user__tag'));
+}</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>DOM: <code>.next()</code> / <code>.previous()</code> / <code>.parent()</code></h1>
+			<pre><code class="language-js">let $user = $('.user');
+let user = document.querySelector('.user');
+
+$user.next();
+user.nextElementSibling;
+
+$user.previous();
+user.previousElementSibling;
+
+$user.parent();
+user.parentNode;</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>DOM: Attributes</h1>
+			<pre><code class="language-js">$user.attr('aria-live');
+user.getAttribute('aria-live');
+
+$user.attr('aria-live', 'Your username is invalid');
+user.setAttribute('aria-live', 'Your username is invalid');
+
+// Data attributes have a special API
+user.dataset.userName = 'Callum';
+user.dataset.userName; // Callum</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>DOM: <code>.html()</code> / <code>.text()</code> / <code>.val()</code></h1>
+			<pre><code class="language-js">let $user = $('.user');
+let user = document.querySelector('.user');
+
+$user.html();
+user.innerHTML;
+
+$user.text();
+user.textValue; // Not innerText!
+
+$('.some-input').val();
+document.querySelector('.some-input').value;</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>DOM: Classes</h1>
+			<pre><code class="language-js">let $user = $('.user');
+let user = document.querySelector('.user');
+
+$user.addClass('user--admin');
+user.classList.add('user--admin');
+
+$user.removeClass('user--admin');
+user.classList.remove('user--admin');
+
+$user.toggleClass('user--admin');
+user.classList.toggle('user--admin');
+
+$user.hasClass('user--admin');
+user.classList.contains('user--admin');</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>DOM: Styling</h1>
+			<pre><code class="language-js">let $user = $('.user');
+let user = document.querySelector('user');
+
+$user.css('background-color', 'orange');
+user.style.backgroundColor = 'orange';
+
+$user.css('background-color');
+getComputedStyle(user).backgroundColor;</code></pre>
 		</div>
 
 		<div class="slide slide--code">
 			<h1>Event handling</h1>
-			<pre><code class="language-js">todo</code></pre>
+			<pre><code class="language-js">$('.user').on('click', function () {
+	$(this).addClass('clicked');
+});
+
+let user = document.querySelector('user');
+user.addEventListener('click', function () {
+	user.classList.add('clicked');
+});</code></pre>
 		</div>
 
 		<div class="slide slide--code">
-			<h1><code>$.ajax()</code></h1>
-			<pre><code class="language-js">fetch API</code></pre>
+			<h1>Event handling</h1>
+			<pre><code class="language-js">$(document).on('click', '.user', function () {
+	$(this).addClass('clicked');
+});
+
+document.addEventListener('click', function (e) {
+	if (e.target.matches('.user')) {
+		e.target.classList.add('clicked');
+	}
+});</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Event handling</h1>
+			<pre><code class="language-js">$(document).on('click', '.user', function () {
+	$(this).addClass('clicked');
+});
+
+function live(selector, event, cb) {
+	document.addEventListener(event, function (e) {
+		if (e.target.matches(selector)) {
+			cb(e);
+		}
+	});
+}
+
+live('.user', 'click', function (e) {
+	e.target.classList.add('clicked');
+});</code></pre>
 		</div>
 
 		<div class="slide slide--code">
 			<h1><code>$.Deferred()</code></h1>
-			<pre><code class="language-js">promises</code></pre>
+			<pre><code class="language-js">var deferred = $.Deferred();
+
+$('.yes').on('click', function () {
+	deferred.resolve();
+});
+
+$('.no').on('click', function () {
+	deferred.reject();
+});
+
+deferred
+	.then(function () {
+		console.log('success');
+	})
+	.fail(function () {
+		console.log('fail');
+	});</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Promises</h1>
+			<pre><code class="language-js">var promise = new Promise(function (resolve, reject) {
+	$('.yes').on('click', resolve);
+	$('.no').on('click', reject);
+});
+
+promise
+	.then(() => console.log('success'))
+	.catch(() => console.log('fail'));</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1><code>$.ajax()</code></h1>
+			<pre><code class="language-js">$.get('/api')
+	.then(function (data) {
+		console.log(data);
+	})
+	.catch(function (err) {
+		console.error(err);
+	});</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1><code>XMLHttpRequest</code> <span class="emoji">&#x1F614;</span></h1>
+			<pre><code class="language-js">var request = new XMLHttpRequest();
+request.open('GET', '/api');
+
+request.onload = function () {
+	var data = this.response;
+	if (this.status >= 200 && this.status < 400) {
+		console.log(data);
+	} else {
+		console.error(data);
+	}
+};
+
+request.onerror = function (err) {
+	console.error(err);
+};
+
+request.send();</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Fetch</h1>
+			<pre><code class="language-js">fetch('/api')
+	.then((res) => res.json());
+	.then((data) => console.log(data))
+	.catch((err) => console.error(err));</code></pre>
+			<p style="font-size: 0.75em; margin-top: 20px">
+				<a href="https://github.com/github/fetch">
+					GitHub polyfill for <code>fetch()</code>
+				</a>
+			</p>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Post form data</h1>
+			<pre><code class="language-js">// jQuery
+$.post('/api', $('.my-form').serialize());
+
+// JavaScript
+let form = document.querySelector('.my-form');
+fetch('/api', {
+	method: 'post',
+	body: new FormData(form)
+});</code></pre>
 		</div>
 
 		<div class="slide slide--code">
 			<h1>Array helpers</h1>
-			<pre><code class="language-js">replace jQuery ones, AND introduce new ones</code></pre>
+			<pre><code class="language-js">// Each
+$.each(['a', 'b', 'c'], function (i, letter) {
+	console.log(letter);
+});
+
+['a', 'b', 'c'].forEach(function (letter) {
+	console.log(letter);
+});
+
+// Map
+$.map(['a', 'b', 'c'], function (i, letter) {
+	return letter.charCodeAt(0);
+});
+
+['a', 'b', 'c'].map(function (letter) {
+	return letter.charCodeAt(0);
+});</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>MORE array helpers</h1>
+			<pre><code class="language-js">// ECMAScript 5
+Array.prototype.reduce()
+Array.prototype.filter()
+Array.prototype.every()
+Array.prototype.some()
+
+// ECMAScript 6
+Array.from() // second argument!
+Array.of()
+Array.prototype.entries()
+Array.prototype.keys()
+Array.prototype.values()
+Array.prototype.find()
+Array.prototype.findIndex()
+Array.prototype.fill()
+</code></pre>
 		</div>
 
 		<div class="slide slide--code">
@@ -186,18 +459,50 @@ greet({ greetee: 'Front-End London' })</code></pre>
 		</div>
 
 		<div class="slide slide--code">
-			<h1><code>$.extend()</code></h1>
-			<pre><code class="language-js">Object.assign() and ES7 rest+spread</code></pre>
+			<h1>Merging objects</h1>
+			<pre><code class="language-js">// jQuery
+function myPlugin(options) {
+	options = $.extend({
+		color: 'red',
+		size: 3
+	}, options);
+}
+
+// JavaScript
+function myPlugin(options) {
+	options = Object.assign({
+		color: 'red',
+		size: 3
+	}, options);
+}</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Cloning objects</h1>
+			<pre><code class="language-js">$.extend({}, objectToClone);
+
+Object.assign({}, objectToClone);</code></pre>
+		</div>
+
+		<div class="slide slide--code">
+			<h1>Merging objects in ES2016</h1>
+			<pre><code class="language-js">function myPlugin(options) {
+	let defaults = {
+		color: 'red',
+		size: 2
+	};
+
+	options = {...defaults, ...options};
+}</code></pre>
 		</div>
 
 		<div class="slide slide--code">
 			<h1>Animation</h1>
-			<pre><code class="language-js">css or requestAnimationFrame</code></pre>
-		</div>
-
-		<div class="slide slide--code">
-			<h1>Callback objects</h1>
-			<pre><code class="language-js">wtf are these? set and map?</code></pre>
+			<ul>
+				<li>CSS animations</li>
+				<li>requestAnimationFrame</li>
+				<li>A library like <a href="http://greensock.com/gsap">GSAP</a></li>
+			</ul>
 		</div>
 
 		<div class="slide slide--title">
