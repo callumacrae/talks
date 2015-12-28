@@ -19,10 +19,19 @@ export default function SliderPlugin(slides) {
 	const knobs = [];
 
 	for (let i = 0; i < slides.slides.length; i++) {
+		let slide = slides.slides[i];
+
 		newKnob = baseKnob.cloneNode();
 		newKnob.dataset.index = i;
-		knobs.push(newKnob);
 
+		let bgColor = getComputedStyle(slide).backgroundColor;
+		if (!util.isWhite(bgColor)) {
+			newKnob.style.backgroundColor = bgColor;
+		}
+
+		newKnob.setAttribute('title', util.getSlideHeading(slide));
+
+		knobs.push(newKnob);
 		slider.appendChild(newKnob);
 	}
 
@@ -42,10 +51,3 @@ export default function SliderPlugin(slides) {
 		}
 	}
 }
-
-/**
- * @todo:
- *
- * section colours
- * title on mouseover
- */
