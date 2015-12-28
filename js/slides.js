@@ -40,6 +40,23 @@ Slides.prototype.goTo = function goToSlide(newIndex) {
 };
 
 /**
+ * Go to the nth slide of specified type.
+ *
+ * @param {string} type The type of slide to go to.
+ * @param {number} headingIndex The number of that type of slide to go to.
+ */
+Slides.prototype.goToType = function goToSlideType(type, headingIndex) {
+	let headings = -1;
+	let index = Array.from(this.slides).findIndex((slide) => {
+		if (slide.classList.contains(`slide--${type}`)) {
+			return (headingIndex === ++headings);
+		}
+	});
+
+	this.goTo(index);
+};
+
+/**
  * Go forwards a number of slides (default 1)
  * @param {number} [diff=1] Number of slides to go.
  */
