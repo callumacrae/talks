@@ -33,9 +33,14 @@ const keyboardOrder = '1234567890QWERTYUIOPASDFGHJKL;ZXCVBNM,.'
  * Plugin to make the slides controllable using the keyboard.
  *
  * @param {Slides} slides The Slides object.
+ * @param {object} [options] Some configuration. See defaults.
  * @constructor
  */
-export default function KeyboardPlugin(slides) {
+export default function KeyboardPlugin(slides, options) {
+	options = Object.assign({
+		numberControls: true
+	}, options);
+
 	util.on(document, 'keydown', function (e) {
 		if (e.keyCode === keyCodes.left) {
 			slides.back();
@@ -43,12 +48,14 @@ export default function KeyboardPlugin(slides) {
 			slides.forward();
 		}
 
-		let keyboardPosition = keyboardOrder.indexOf(e.keyCode);
-		if (keyboardPosition !== -1) {
-			if (e.shiftKey) {
-				slides.goToType('title', keyboardPosition);
-			} else {
-				slides.goTo(keyboardPosition);
+		if (options.numberControls) {
+			let keyboardPosition = keyboardOrder.indexOf(e.keyCode);
+			if (keyboardPosition !== -1) {
+				if (e.shiftKey) {
+					slides.goToType('title', keyboardPosition);
+				} else {
+					slides.goTo(keyboardPosition);
+				}
 			}
 		}
 	});
