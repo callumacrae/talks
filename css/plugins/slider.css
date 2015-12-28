@@ -22,5 +22,5 @@
 }
 
 .slider__knob--active {
-	background-color: #ccc;
+	background-color: #f3df49 !important;
 }
