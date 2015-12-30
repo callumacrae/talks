@@ -1,4 +1,5 @@
 node_modules
 *.log
-build/*
-!build/.gitkeep
+app/*
+!app/index.html
+!app/images

@@ -1,6 +1,6 @@
 @import "global.css";
 @import "plugins/slider.css";
-@import "../node_modules/prismjs/themes/prism.css";
+@import "../../node_modules/prismjs/themes/prism.css";
 
 .slides {
 	height: 100%;
@@ -12,6 +12,7 @@
 }
 
 .slide {
+	height: 60%;
 	margin-bottom: 50px;
 
 	font-size: 1.5em;
@@ -19,21 +20,19 @@
 	color: #184C70;
 }
 
+.slide:not(.slide--title) h1 {
+	margin-bottom: 1em;
+}
+
 .slide--title {
+	height: auto;
+
 	background-color: #184C70;
 	color: white;
 }
 
-.slide--title img {
+.slide img {
 	height: 300px;
-}
-
-.slide--text, .slide--code {
-	height: 60%;
-}
-
-.slide--code h1 {
-	margin-bottom: 1em;
 }
 
 .slide pre {
