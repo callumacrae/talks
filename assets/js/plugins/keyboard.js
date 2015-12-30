@@ -42,6 +42,10 @@ export default function KeyboardPlugin(slides, options) {
 	}, options);
 
 	util.on(document, 'keydown', function (e) {
+		if (e.metaKey) {
+			return;
+		}
+
 		if (e.keyCode === keyCodes.left) {
 			slides.back();
 		} else if (e.keyCode === keyCodes.right) {
