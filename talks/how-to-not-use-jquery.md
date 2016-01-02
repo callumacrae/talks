@@ -612,21 +612,23 @@ function myPlugin(options) {
 
 ----
 
-## oldIE
+## Old versions of Internet Explorer
 
-Caniuse / GA
+<iframe src="//giphy.com/embed/SP58bfyWGP1pC" width="480" height="273" frameBorder="0"></iframe>
 
-CSS2
+----
+
+<h2 style="margin-top: -30px">Old versions of Internet Explorer</h2>
+
+<iframe src="http://caniuse.com/#feat=css-sel3" width="1000" height="600"></iframe>
 
 ----
 
 ## Low barrier to entry
 
-"Everyone knows jQuery, even the backend developers"
-
 ----
 
-## A bajilion libraries
+## A bajillion libraries
 
 ----
 
@@ -641,30 +643,132 @@ CSS2
 
 # More ES2015
 
-jQuery isn't enough
-
 ----
 
 ## Template literals
 
-```
+```js
+let name = 'Callum';
 
+let oldGreeting = 'Hello ' + name + '!\n\n'
+	+ 'Welcome to Earth.';
+
+let greeting = `Hello ${name}!
+
+Welcome to Earth.`;
 ```
 
 ----
 
 ## Generators
 
+```js
+function* count() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+var counter = count();
+
+counter.next(); // {value: 1, done: false}
+counter.next(); // {value: 2, done: false}
+counter.next(); // {value: 3, done: false}
+
+counter.next(); // {done: true, value: undefined}
 ```
 
+----
+
+## Generators
+
+```js
+function* range(start, end) {
+    for (let i = start; i <= end; i++) {
+        yield i;
+    }
+}
+
+for (let i of range(5, 8)) {
+    console.log(i);
+}
+```
+
+[Read more on my blog](http://macr.ae/article/iterators-and-generators.html)
+
+----
+
+## Classes
+
+```js
+class Developer {
+	constructor(name, languages) {
+		this.name = name;
+		this.languages = languages;
+	}
+	intro() {
+		console.log(`I'm ${this.name} and I write ${this.languages.join(',')}.`);
+	}
+}
+
+class JavaScriptDeveloper extends Developer {
+	constructor(name, languages = ['JavaScript']) {
+		super(name, languages);
+	}
+}
+
+let callum = new JavaScriptDeveloper('Callum');
+callum.intro(); // I'm Callum and I write JavaScript.
 ```
 
 ----
 
 ## Classes
 
+```js
+class Person {
+	constructor(name, age) {
+		this._age = age;
+	}
+	
+	get age() { return this._age; }
+	
+	set age(newAge) {
+		if (typeof newAge !== 'number') {
+			throw new Error('Age must be a number');
+		}
+		this._age = age;
+	}
+}
+
+let bob = new Person('Bob', 49);
+bob.age; // 49
+bob.age = 'ten'; // Age must be a number
 ```
 
+----
+
+## Classes
+
+```js
+class Number {
+	constructor(value) {
+		this.value = value;
+	}
+	
+	static max(...nums) {
+		return nums.reduce(function (acc, curr) {
+			return (curr.value > acc.value) ? curr : acc;
+		});
+	}
+}
+
+let seven = new Number(7);
+let eight = new Number(8);
+let zero = new Number(0);
+
+seven.max === undefined;
+Number.max(seven, eight, zero) === eight;
 ```
 
 ----
