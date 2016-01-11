@@ -581,21 +581,6 @@ Object.assign({}, objectToClone);
 
 ----
 
-## Merging objects in ES2016
-
-```js
-function myPlugin(options) {
-	let defaults = {
-		color: 'red',
-		size: 2
-	};
-
-	options = {...defaults, ...options};
-}
-```
-
-----
-
 ## Animation
 
 - CSS animations
@@ -656,6 +641,46 @@ let oldGreeting = 'Hello ' + name + '!\n\n'
 let greeting = `Hello ${name}!
 
 Welcome to Earth.`;
+```
+
+----
+
+## Spread operator
+
+```js
+function logSecondArgument(one, two, three) {
+	console.log(two);
+}
+
+let numbers = [1, 2, 3];
+
+logSecondArgument(...numbers); // two
+
+// Equivalent to:
+logSecondArgument(1, 2, 3);
+
+// Before ES2015:
+logSecondArgument.apply(this, numbers); // two
+```
+
+----
+
+## Spread operator
+
+```js
+let numbers = [1, 2, 3];
+
+[...numbers, 4, 5, 6]; // [1, 2, 3, 4, 5, 6]
+```
+
+----
+
+## Spread operator
+
+```js
+let [one, two, ...more] = [1, 2, 3, 4, 5];
+
+console.log(more); // [3, 4, 5]
 ```
 
 ----
