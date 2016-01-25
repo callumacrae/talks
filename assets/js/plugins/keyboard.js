@@ -4,6 +4,10 @@ const keyCodes = {
 	left: 37,
 	right: 39,
 
+	// Lazer pointer!
+	pageUp: 33,
+	pageDown: 34,
+
 	semicolon: 186,
 	comma: 188,
 	fullstop: 190
@@ -46,9 +50,9 @@ export default function KeyboardPlugin(slides, options) {
 			return;
 		}
 
-		if (e.keyCode === keyCodes.left) {
+		if (e.keyCode === keyCodes.left || e.keyCode === keyCodes.pageUp) {
 			slides.back();
-		} else if (e.keyCode === keyCodes.right) {
+		} else if (e.keyCode === keyCodes.right || e.keyCode === keyCodes.pageDown) {
 			slides.forward();
 		}
 
