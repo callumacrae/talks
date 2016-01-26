@@ -281,7 +281,7 @@ $user.html();
 user.innerHTML;
 
 $user.text();
-user.textValue; // Not innerText!
+user.textContent; // Not innerText!
 
 $('.some-input').val();
 document.querySelector('.some-input').value;
