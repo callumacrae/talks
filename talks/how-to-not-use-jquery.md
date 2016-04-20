@@ -54,6 +54,24 @@ $.get('/user.json', { name: 'Callum' })
 
 ----
 
+# Why not jQuery?
+
+----
+
+## Performance
+
+- 278KB minified
+- 102KB minified + gzipped
+- 2 seconds on 3G
+
+----
+
+## Kitchen sink
+
+It does a lot you probably don't need.
+
+----
+
 # What about ES2015?
 
 ----
@@ -165,7 +183,7 @@ function greet({ greeting = 'hello', greetee = 'world' }) {
   console.log(greeting + ', ' + greetee + '!');
 }
 
-greet({ greetee: 'Front-End London' });
+greet({ greetee: 'ProgSCon London' });
 ```
 
 ----
@@ -232,6 +250,24 @@ let tags = [];
 
 for (let user of users) {
 	tags.push(...user.querySelectorAll('.user__tag'));
+}
+```
+
+----
+
+## DOM: Selecting children
+
+```js
+// jQuery
+$('.user').find('.user__tag');
+
+// JavaScript
+let users = document.querySelectorAll('.user');
+let tags = [];
+
+for (let user of users) {
+	let tags = user.querySelectorAll('.user__tag');
+	tags.push(tags[0], tags[1], ...);
 }
 ```
 
@@ -654,13 +690,13 @@ function logSecondArgument(one, two, three) {
 
 let numbers = [1, 2, 3];
 
-logSecondArgument(...numbers); // two
+logSecondArgument(...numbers); // 2
 
 // Equivalent to:
 logSecondArgument(1, 2, 3);
 
 // Before ES2015:
-logSecondArgument.apply(this, numbers); // two
+logSecondArgument.apply(this, numbers); // 2
 ```
 
 ----
@@ -805,6 +841,7 @@ Number.max(seven, eight, zero) === eight;
 # How to not use jQuery
 
 - Everything jQuery does can be done without jQuery
+- jQuery can have performance implications on your site
 - ES2015 makes writing vanilla JavaScript even nicer
 - jQuery absolutely still has its place
 	- Better browser support
@@ -812,6 +849,6 @@ Number.max(seven, eight, zero) === eight;
 
 ----
 
-# Is jQuery really necessary?
+# Thanks!
 
 Callum Macrae | @callumacrae
