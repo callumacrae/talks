@@ -18,9 +18,3 @@ slides.addPlugin(slider);
 
 const hash = new HashPlugin(slides);
 slides.addPlugin(hash);
-
-/**
- * @todo:
- *
- * MarkDown plugin
- */
