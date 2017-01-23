@@ -2,6 +2,10 @@
 @import "plugins/slider.css";
 @import "../../node_modules/prismjs/themes/prism.css";
 
+body {
+	color: #403D31;
+}
+
 .slides {
 	height: 100%;
 	display: flex;
@@ -17,7 +21,7 @@
 
 	font-size: 1.5em;
 
-	color: #184C70;
+	color: #403D31;
 }
 
 .slide:not(.slide--title) h1 {
@@ -27,7 +31,7 @@
 .slide--title {
 	height: auto;
 
-	background-color: #184C70;
+	background-color: #403D31;
 	color: white;
 }
 
@@ -55,10 +59,19 @@
 	text-decoration: none;
 }
 
+h1, h2, h3 {
+	font-weight: 400;
+}
+
+.slide--title {
+	font-family: Raleway, sans-serif;
+}
+
 h1 {
 	margin-top: 0;
 	margin-bottom: 0.3em;
 	font-size: 2em;
+	font-weight: 100;
 }
 
 p {
@@ -80,5 +93,5 @@ span.emoji {
 
 	font-size: 1.2em;
 
-	color: #184C70;
+	color: #403D31;
 }
